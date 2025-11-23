@@ -73,4 +73,4 @@ Giai đoạn Proof of Concept đã hoàn thành đúng yêu cầu đề ra:
 2.  Client C++ đã gửi được Request và nhận về Response từ mô hình ngôn ngữ lớn.
 3.  Sẵn sàng cho giai đoạn tiếp theo: Xử lý chuỗi JSON và hoàn thiện giao diện người dùng.
 
-**Link Source Code (GitHub):** [Dán link GitHub của bạn vào đây]
+**Link Source Code (GitHub):** 
