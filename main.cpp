@@ -1,9 +1,8 @@
 #include <iostream>
 #include <string>
-#include <curl/curl.h> // Thư viện quan trọng nhất
+#include <curl/curl.h> 
 
 // Hàm callback để hứng dữ liệu trả về từ Server (Ollama)
-// Vì C++ không tự biết cách lưu data tải về, mình phải định nghĩa hàm này
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     ((std::string*)userp)->append((char*)contents, size * nmemb);
     return size * nmemb;
@@ -19,14 +18,9 @@ int main() {
     curl = curl_easy_init();
 
     if(curl) {
-        // =================================================================
-        // THAY LINK NGROK CỦA BẠN VÀO ĐÂY
-        // Ví dụ: "https://abc12345.ngrok-free.app/api/generate"
-        // =================================================================
         std::string url = "https://unslaked-unblocked-josette.ngrok-free.dev/api/generate";
 
         // 2. Chuẩn bị dữ liệu JSON để gửi đi (Hard-code cho phần POC)
-        // Lưu ý: "model" phải đúng tên model đang chạy trên Kaggle (gpt-oss:20b)
         std::string json_data = "{"
                                 "\"model\": \"gpt-oss:20b\","
                                 "\"prompt\": \"Hello, tell me a short joke within 1 sentence.\","
@@ -46,7 +40,7 @@ int main() {
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 
-        // 4. Thực hiện gửi đi!
+        // 4. Thực hiện gửi đi
         std::cout << "Dang gui tin hieu toi Ollama (qua Ngrok)..." << std::endl;
         res = curl_easy_perform(curl);
 
